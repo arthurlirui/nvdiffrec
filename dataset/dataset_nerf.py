@@ -23,7 +23,10 @@ from .dataset import Dataset
 ###############################################################################
 
 def _load_img(path):
+    #filename = os.path.basename(path).split('.')[0]
     files = glob.glob(path + '.*')
+    if len(files) == 0:
+        files = glob.glob(path)
     assert len(files) > 0, "Tried to find image file for: %s, but found 0 files" % (path)
     img = util.load_image_raw(files[0])
     if img.dtype != np.float32: # LDR image

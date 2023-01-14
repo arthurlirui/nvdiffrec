@@ -20,8 +20,9 @@ to generate a tet grid
 
 def generate_tetrahedron_grid_file(res=32, root='..'):
     frac = 1.0 / res
-    command = 'cd %s/quartet; ' % (root) + \
-                './quartet meshes/cube.obj %f meshes/cube_%f_tet.tet -s meshes/cube_boundary_%f.obj' % (frac, res, res)
+    #command = 'cd %s/quartet; ' % (root) + \
+    #            './quartet meshes/cube.obj %f meshes/cube_%f_tet.tet -s meshes/cube_boundary_%f.obj' % (frac, res, res)
+    command = './quartet meshes/cube.obj %f meshes/cube_%f_tet.tet -s meshes/cube_boundary_%f.obj' % (frac, res, res)
     os.system(command)
 
 
@@ -45,3 +46,13 @@ def convert_from_quartet_to_npz(quartetfile = 'cube_32_tet.tet', npzfile = '32_t
     print(indices.shape)
 
     np.savez_compressed(npzfile, vertices=vertices, indices=indices)
+
+
+if __name__ == '__main__':
+    if True:
+        rootpath = './data/tets'
+        generate_tetrahedron_grid_file(res=512, root=rootpath)
+    #convert_from_quartet_to_npz(quartetfile='cube_32_tet.tet', npzfile='32_tets')
+    if False:
+        convert_from_quartet_to_npz(quartetfile='cube_32_tet.tet', npzfile='32_tets')
+
